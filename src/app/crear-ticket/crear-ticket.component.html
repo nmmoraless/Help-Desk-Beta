@@ -1,0 +1,77 @@
+<div class="container mt-2">
+    <h1>Crear nuevo ticket</h1>
+    <form id="add-Ticket" name="add-Ticket" class="was-validated" method="post" action="">
+
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label for="area" class="form-label">*Area:</label>
+            <select id="area" class="form-select" name="area"  required>
+              <option value="" selected disabled>--Seleccionar---</option>
+              <option value="">Contabilidad</option>
+              <option value="">Tecnología</option>
+              <option value="">Administrativa</option>
+              
+            </select>
+          </div>
+    
+          <div class="col-12 col-md-6 mb-3">
+            <label for="responsable" class="form-label">*Responsable:</label>
+            <select id="responsable" class="form-select" name="responsable" required>
+              <option value="" selected disabled>--Seleccionar--</option>
+              <option value="">Lider 1</option>
+              <option value="">Lider 2</option>
+              <option value="">Lider 3</option>
+            </select>
+          </div>
+    
+        </div>
+    
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label for="departamento" class="form-label">*Departamento:</label>
+            <select id="departamento" class="form-select" name="departamento" required>
+              <option value="" selected disabled>--Seleccionar---</option>
+              
+            </select>
+          </div>
+    
+          <div class="col-12 col-md-6 mb-3">
+            <label for="municipio" class="form-label">*Municipio:</label>
+            <select id="municipio" class="form-select" name="municipio" disabled required>
+              <option value="" selected disabled>--Seleccionar--</option>
+            </select>
+          </div>
+    
+        </div>
+    
+        <div class="mb-3">
+          <label for="infoServicio" class="form-label">*Descripción del Ticket:</label>
+          <textarea class="form-control" id="infoServicio" name="infoServicio" rows="3" required></textarea>
+          <div class="invalid-feedback">
+            Campo obligatorio
+          </div>
+        </div>
+    
+        <div class="row">
+    
+          <div class="col-12 col-md-6 mb-3">
+            <label for="fechaIngreso" class="form-label">*Fecha:</label>
+            <input type="date" id="fechaIngreso" class="form-control" name="fechaIngreso" placeholder="dd/mm/aaaa" required>
+          </div>
+    
+          <div class="col-12 col-md-6 mb-3">
+            <label for="accion" class="form-label">*Acción:</label>
+            <select id="accion" class="form-select" name="accion" required>
+              <option value="" selected disabled>--Seleccionar--</option>
+              <option>Registrar</option>
+            </select>
+          </div>
+    
+        </div>
+    
+        <div class="col mb-3">
+          <button type="submit" class="btn btn-dark">Registrar</button>
+        </div>  
+        
+      </form>
+  </div>

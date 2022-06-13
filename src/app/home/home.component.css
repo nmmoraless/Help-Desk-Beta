@@ -1,0 +1,10 @@
+.home {
+    height: 80vh;
+    margin: 0 auto;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .home {
+        width: 60%;
+    }
+}
