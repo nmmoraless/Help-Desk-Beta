@@ -8,13 +8,23 @@ import data from 'src/assets/data/csvjson.json';
 })
 export class CrearTicketComponent implements OnInit {
 
+  dataColombia: any = JSON.stringify(data); 
+  dataColombiaArray: Array<any> = [];
+  departamentos: Array<string> = [];
+  departamentosOrdenados: Array<string> = [];
+
   constructor() { }
 
   ngOnInit(): void {
-    this.firstWay();
+    this.leerJson();
+    this.dataColombiaArray.forEach((element) => {
+      if(this.departamentos.indexOf(element.DEPARTAMENTO) == -1){
+        this.departamentos.push(element.DEPARTAMENTO);
+      }
+    })
+    this.departamentosOrdenados = this.departamentos.sort();
   }
-  public firstWay():void{
-    let dataColombia: any = JSON.stringify(data);    
-    console.log(JSON.parse(dataColombia));    
+  public leerJson():void{   
+    this.dataColombiaArray = (JSON.parse(this.dataColombia));  
   }
 }

@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CrearTicketComponent } from './crear-ticket/crear-ticket.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { ActualizarComponent } from './actualizar/actualizar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { ActualizarComponent } from './actualizar/actualizar.component';
     FooterComponent,
     CrearTicketComponent,
     DashBoardComponent,
-    ActualizarComponent
+    ActualizarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
