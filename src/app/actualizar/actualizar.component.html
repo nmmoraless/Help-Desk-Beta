@@ -10,7 +10,7 @@
 
           <div class="col-12 col-md-4 mb-3">
             <label for="area" class="form-label">*Area:</label>
-            <select [(ngModel)]="ticket.area" id="area" class="form-control" name="area">
+            <select [(ngModel)]="ticket.area" id="area" class="form-select" name="area">
               <option [ngValue]="">Contabilidad</option>
               <option [ngValue]="">Tecnología</option>
               <option [ngValue]="">Administrativa</option>
@@ -20,7 +20,7 @@
     
           <div class="col-12 col-md-4 mb-3">
             <label  for="responsable" class="form-label">*Responsable:</label>
-            <select [(ngModel)]="ticket.responsable" id="responsable" class="form-control" name="responsable">
+            <select [(ngModel)]="ticket.responsable" id="responsable" class="form-select" name="responsable">
               <option [ngValue]="">Lider 1</option>
               <option [ngValue]="">Lider 2</option>
               <option [ngValue]="">Lider 3</option>
@@ -31,12 +31,12 @@
         <div class="row">
           <div class="col-12 col-md-6 mb-3">
             <label for="departamento" class="form-label">*Departamento:</label>
-            <input [(ngModel)]="ticket.departamento" type="text" id="departamento" class="form-control" name="departamento">
+            <input [(ngModel)]="ticket.departamento" type="text" id="departamento" class="form-control" name="departamento" readonly>
           </div>
     
           <div class="col-12 col-md-6 mb-3">
             <label for="municipio" class="form-label">*Municipio:</label>
-            <input [(ngModel)]="ticket.municipio" type="text" id="municipio" class="form-control" name="municipio">
+            <input [(ngModel)]="ticket.municipio" type="text" id="municipio" class="form-control" name="municipio" readonly>
           </div>
     
         </div>
@@ -60,7 +60,7 @@
     
           <div class="col-12 col-md-6 mb-3">
             <label for="accion" class="form-label">*Acción:</label>
-            <select [(ngModel)]="ticket.accion" id="accion" class="form-control" name="accion">
+            <select [(ngModel)]="ticket.accion" id="accion" class="form-select" name="accion">
               <option [ngValue]="">Registrar</option>
               <option [ngValue]="">Pendiente</option>
               <option [ngValue]="">Reasignado</option>

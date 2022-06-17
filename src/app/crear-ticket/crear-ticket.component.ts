@@ -67,7 +67,7 @@ export class CrearTicketComponent implements OnInit {
         }    
       }
     }
-    console.log(this.municipiosOrdenados);
+    //console.log(this.municipiosOrdenados);
     return this.municipiosOrdenados = municipios.sort(); 
   }
 
