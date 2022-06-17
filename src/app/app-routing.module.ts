@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'home', component:HomeComponent},
     {path: 'crear-ticket', component:CrearTicketComponent},
     {path: 'administracion', component:DashBoardComponent},
-    {path: 'actualizar', component:ActualizarComponent},
+    {path: 'actualizar/:id', component:ActualizarComponent},
   ]},
   {
     path: "**", redirectTo: '/home', pathMatch: 'full'

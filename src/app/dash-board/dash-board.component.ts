@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConsumirTicketService } from '../actualizar/consumir-ticket.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -8,14 +9,43 @@ import { Router } from '@angular/router';
 })
 export class DashBoardComponent implements OnInit {
 
-  constructor(private router:Router) {
+  dashboardList: any = [];
+  paramBusqueda: string = "";
+  modificarTicket: string = "";//Trae el Id del ticket a visualizar o modificar
+
+  constructor(private router:Router, private ticketService: ConsumirTicketService) {
     
    }
 
   ngOnInit(): void {
+    this.getData();
   }
 
-  editar(){
-    this.router.navigateByUrl('/actualizar');
+  editar(id: string){
+    this.modificarTicket = id;
+    this.router.navigateByUrl('/actualizar/'+this.modificarTicket);
+  }
+
+  getData(){
+    this.ticketService.buscarTicket().subscribe(
+      (data)=>{
+        this.dashboardList = data;
+      },
+      (error)=>{
+        alert(error.message);
+      }
+    )
+    
+  }
+
+  deleteData(){
+    this.ticketService.deleteTicket(this.modificarTicket).subscribe(
+      (data)=>{
+        this.dashboardList = data;
+      },
+      (error)=>{
+        alert(error.message);
+      }
+    )
   }
 }

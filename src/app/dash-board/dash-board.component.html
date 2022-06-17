@@ -2,7 +2,7 @@
     <h3>Gestionar solicitud:</h3>
 
     <div class="form-group">
-        <input type="text" class="form-control" id="searchInput" placeholder="#ticket, área y/o municipio">
+        <input type="text" [(ngModel)]="paramBusqueda" class="form-control" id="searchInput" placeholder="#ticket, área y/o municipio">
     </div>
 
     <div class="table-responsive">
@@ -20,27 +20,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>45250</td>
-                <td>Soporte</td>
-                <td>Laguna Negra</td>
-                <td>No imprime los reportes</td>
-                <td>Javier Vargas</td>
-                <td>Pendiente</td>
-                <td class="text-center"><img (click)="editar()" class="icono-editar" src="assets/img/edit.svg" alt="editar" width="25px"></td>
-                <td class="text-center"><img class="icono-delete" src="assets/img/delete.svg" alt="borrar" width="25px" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>45251</td>
-                <td>Adminitrativa</td>
-                <td>Oficinas Transfors</td>
-                <td>Control de plagas por comején... Urgente!!!</td>
-                <td>Raquel</td>
-                <td>Pendiente</td>
-                <td class="text-center"><img (click)="editar()" class="icono-editar" src="assets/img/edit.svg" alt="editar" width="25px"></td>
-                <td class="text-center"><img class="icono-delete" src="assets/img/delete.svg" alt="borrar" width="25px" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"></td>
-                <td></td>
+            <tr *ngFor="let element of dashboardList; let i = index">
+              <ng-container *ngIf='paramBusqueda == "" || element.id == paramBusqueda || element.area == paramBusqueda || element.municipio == paramBusqueda'>
+                <td>{{element.id}}</td>
+                <td>{{element.area}}</td>
+                <td>{{element.municipio}}</td>
+                <td>{{element.descripcion}}</td>
+                <td>{{element.responsable}}</td>
+                <td>{{element.accion}}</td>
+                <td class="text-center"><img (click)="editar(element.id)" class="icono-editar" src="assets/img/edit.svg" alt="editar" width="25px"></td>
+                <td class="text-center"><img (click)="this.modificarTicket = element.id" class="icono-delete" src="assets/img/delete.svg" alt="borrar" width="25px" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"></td>
+              </ng-container>
             </tr>
         </tbody>
     </table>
@@ -58,7 +48,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
-              <button class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Confirmar</button>
+              <button (click)="deleteData()" class="btn btn-danger" data-bs-dismiss="modal">Confirmar</button>
             </div>
           </div>
         </div>

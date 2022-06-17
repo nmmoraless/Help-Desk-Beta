@@ -1,73 +1,70 @@
 <div class="container mt-2">
     <h1>Visualizar / Modificar Ticket</h1>
-    <form id="add-Ticket" name="add-Ticket" class="was-validated" method="post" action="">
+    <form id="add-Ticket" name="add-Ticket" class="was-validated"  action="">
 
         <div class="row">
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-4 mb-3">
+            <label for="ticket" class="form-label">*#Ticket:</label>
+            <input [(ngModel)]="paramsId.id" type="text" id="ticket" class="form-control" name="ticket" readonly>              
+          </div>
+
+          <div class="col-12 col-md-4 mb-3">
             <label for="area" class="form-label">*Area:</label>
-            <select id="area" class="form-select" name="area"  required>
-              <option value="" selected disabled>--Seleccionar---</option>
-              <option value="">Contabilidad</option>
-              <option value="">Tecnología</option>
-              <option value="">Administrativa</option>
-              
+            <select [(ngModel)]="ticket.area" id="area" class="form-control" name="area">
+              <option [ngValue]="">Contabilidad</option>
+              <option [ngValue]="">Tecnología</option>
+              <option [ngValue]="">Administrativa</option>
+              <option [ngValue]="">Soporte</option>
             </select>
           </div>
     
-          <div class="col-12 col-md-6 mb-3">
-            <label for="responsable" class="form-label">*Responsable:</label>
-            <select id="responsable" class="form-select" name="responsable" required>
-              <option value="" selected disabled>--Seleccionar--</option>
-              <option value="">Lider 1</option>
-              <option value="">Lider 2</option>
-              <option value="">Lider 3</option>
+          <div class="col-12 col-md-4 mb-3">
+            <label  for="responsable" class="form-label">*Responsable:</label>
+            <select [(ngModel)]="ticket.responsable" id="responsable" class="form-control" name="responsable">
+              <option [ngValue]="">Lider 1</option>
+              <option [ngValue]="">Lider 2</option>
+              <option [ngValue]="">Lider 3</option>
             </select>
           </div>
-    
         </div>
     
         <div class="row">
           <div class="col-12 col-md-6 mb-3">
             <label for="departamento" class="form-label">*Departamento:</label>
-            <select id="departamento" class="form-select" name="departamento" required>
-              <option value="" selected disabled>--Seleccionar---</option>
-              
-            </select>
+            <input [(ngModel)]="ticket.departamento" type="text" id="departamento" class="form-control" name="departamento">
           </div>
     
           <div class="col-12 col-md-6 mb-3">
             <label for="municipio" class="form-label">*Municipio:</label>
-            <select id="municipio" class="form-select" name="municipio" disabled required>
-              <option value="" selected disabled>--Seleccionar--</option>
-            </select>
+            <input [(ngModel)]="ticket.municipio" type="text" id="municipio" class="form-control" name="municipio">
           </div>
     
         </div>
     
         <div class="mb-3">
           <label for="infoServicio" class="form-label">*Descripción del Ticket:</label>
-          <textarea class="form-control" id="infoServicio" name="infoServicio" rows="3" required></textarea>
+          <textarea [(ngModel)]="ticket.descripcion" class="form-control" id="infoServicio" name="infoServicio" rows="3"required>{{ticket.descripcion}}</textarea>
         </div>
 
         <div class="mb-3">
-            <label for="infoServicio" class="form-label">*Solución:</label>
-            <textarea class="form-control" id="infoServicio" name="infoServicio" rows="3" required></textarea>
+            <label for="solucion" class="form-label">*Solución:</label>
+            <textarea [(ngModel)]="ticket.solucion" class="form-control" id="solucion" name="solucion" rows="3" required>{{ticket.solucion}}</textarea>
           </div>
     
         <div class="row">
     
           <div class="col-12 col-md-6 mb-3">
             <label for="fechaIngreso" class="form-label">*Fecha:</label>
-            <input type="date" id="fechaIngreso" class="form-control" name="fechaIngreso" placeholder="dd/mm/aaaa" required>
+            <input [(ngModel)]="ticket.fecha" type="date" id="fechaIngreso" class="form-control" name="fechaIngreso" placeholder="dd/mm/aaaa" [(ngModel)]="ticket.fecha" required>
           </div>
     
           <div class="col-12 col-md-6 mb-3">
             <label for="accion" class="form-label">*Acción:</label>
-            <select id="accion" class="form-select" name="accion" required>
-              <option value="" selected disabled>--Seleccionar--</option>
-              <option>Registrar</option>
-              <option>Asignar</option>
-              <option>Cerrar</option>
+            <select [(ngModel)]="ticket.accion" id="accion" class="form-control" name="accion">
+              <option [ngValue]="">Registrar</option>
+              <option [ngValue]="">Pendiente</option>
+              <option [ngValue]="">Reasignado</option>
+              <option [ngValue]="">Finalizado</option>
             </select>
           </div>
     
@@ -92,7 +89,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">No, Cancelar</button>
-              <button class="btn btn-success" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Si, actualizar</button>
+              <button (click)="updateData()" class="btn btn-success">Si, actualizar</button>
             </div>
           </div>
         </div>
