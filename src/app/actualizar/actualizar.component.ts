@@ -1,11 +1,9 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsumirTicketService } from './consumir-ticket.service';
 
 interface Tickets {
-  id?: string;
+  id?: number;
   area: string;
   responsable: string;
   departamento: string;
@@ -24,7 +22,7 @@ interface Tickets {
 export class ActualizarComponent implements OnInit {
   
    ticket: Tickets = {
-    id: "",
+    id: 0,
     area: "",
     responsable: "",
     departamento: "",

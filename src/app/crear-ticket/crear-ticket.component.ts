@@ -4,7 +4,7 @@ import { ConsumirTicketService } from '../actualizar/consumir-ticket.service';//
 
 //Normalmente las interfaces se definen en un archivo aparte a fin de exportarlas y usarlas en cualquier componente
 interface CrearTicket {
-  id: string;
+  id: number;
   area: string;
   responsable: string;
   departamento: string;
@@ -22,7 +22,7 @@ interface CrearTicket {
 export class CrearTicketComponent implements OnInit {
 
   ingresarTicket: CrearTicket = {
-    id: "",
+    id: 0,
     area: "",
     responsable: "",
     departamento: "",
