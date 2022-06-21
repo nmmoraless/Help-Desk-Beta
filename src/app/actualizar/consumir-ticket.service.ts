@@ -10,19 +10,19 @@ export class ConsumirTicketService {
   constructor(public http: HttpClient) { }
 
   buscarTicket(){
-    return this.http.get(`http://localhost:5012/Ticket`);
+    return this.http.get(`https://localhost:7086/Ticket`);
   }
 
   guardarTicket(ingresarTicket: any){
-    return this.http.post(`http://localhost:5012/Ticket`,ingresarTicket);
+    return this.http.post(`https://localhost:7086/Ticket`,ingresarTicket);
   }
 
   actualizarTicket(actualizarTicket: any, idParams: any){
-    return this.http.put(`http://localhost:5012/Ticket?id=${idParams}`,actualizarTicket);
+    return this.http.put(`https://localhost:7086/Ticket?id=${idParams}`,actualizarTicket);
   }
 
   deleteTicket(id: string){
-    return this.http.delete(`http://localhost:5012/Ticket?id=${id}`);
+    return this.http.delete(`https://localhost:7086/Ticket?id=${id}`);
   }
 
 }
