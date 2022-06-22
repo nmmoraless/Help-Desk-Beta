@@ -89,7 +89,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">No, Cancelar</button>
-              <button (click)="updateData()" class="btn btn-success">Si, actualizar</button>
+              <button (click)="updateData()" [routerLink]="'/administracion'" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close">Si, actualizar</button>
             </div>
           </div>
         </div>

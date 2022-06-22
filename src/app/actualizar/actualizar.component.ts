@@ -74,7 +74,7 @@ export class ActualizarComponent implements OnInit {
 
   updateData(){
     this.ticket.id = this.paramsId.id;
-    this.ticketService.actualizarTicket(this.ticket,this.paramsId.id).subscribe(
+    this.ticketService.actualizarTicket(this.ticket, parseInt(this.paramsId.id)).subscribe(
       (data)=>{
         this.dashboardList = data;
       },

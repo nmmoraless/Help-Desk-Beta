@@ -10,6 +10,7 @@ interface CrearTicket {
   departamento: string;
   municipio: string;
   descripcion: string;
+  solucion: string;
   fecha: Date;
   accion: string;
 }
@@ -28,6 +29,7 @@ export class CrearTicketComponent implements OnInit {
     departamento: "",
     municipio: "",
     descripcion: "",
+    solucion: "",
     fecha: new Date(),
     accion: "",
   }
@@ -73,7 +75,7 @@ export class CrearTicketComponent implements OnInit {
 
   guardarNuevoTicket(){
     this.ticketService.guardarTicket(this.ingresarTicket).subscribe(
-      (data)=>{       
+      (data)=>{    
         console.log(data);
       },
       (error)=>{

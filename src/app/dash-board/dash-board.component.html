@@ -15,8 +15,8 @@
             <th scope="col">Descripción</th>
             <th scope="col">Responsable</th>
             <th scope="col">Estado</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Borrar</th>
+            <th class="text-center" scope="col">Editar</th>
+            <th class="text-center" scope="col">Borrar</th>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
-              <button (click)="deleteData()" class="btn btn-danger" data-bs-dismiss="modal">Confirmar</button>
+              <button [routerLink]="'/administracion'" (click)="deleteData()" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Confirmar</button>
             </div>
           </div>
         </div>

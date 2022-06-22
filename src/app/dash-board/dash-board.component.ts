@@ -41,7 +41,8 @@ export class DashBoardComponent implements OnInit {
   deleteData(){
     this.ticketService.deleteTicket(this.modificarTicket).subscribe(
       (data)=>{
-        this.dashboardList = data;
+        this.getData();//Retorna la información actualizada de la base de datos
+
       },
       (error)=>{
         alert(error.message);
