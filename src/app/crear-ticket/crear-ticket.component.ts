@@ -1,19 +1,10 @@
 import { Component, OnInit } from '@angular/core';//por default
 import data from 'src/assets/data/csvjson.json';//importación del recurso json
-import { ConsumirTicketService } from '../actualizar/consumir-ticket.service';//servicio creado
+import { DatePipe } from '@angular/common';
 
-//Normalmente las interfaces se definen en un archivo aparte a fin de exportarlas y usarlas en cualquier componente
-interface CrearTicket {
-  id: number;
-  area: string;
-  responsable: string;
-  departamento: string;
-  municipio: string;
-  descripcion: string;
-  solucion: string;
-  fecha: Date;
-  accion: string;
-}
+import { ConsumirTicketService } from '../actualizar/consumir-ticket.service';//servicio creado
+import { Tickets } from '../Interfaces/tickets';//interfaz importada
+
 
 @Component({
   selector: 'app-crear-ticket',//nombre del selector del componente
@@ -22,7 +13,7 @@ interface CrearTicket {
 })
 export class CrearTicketComponent implements OnInit {
 
-  ingresarTicket: CrearTicket = {
+  ingresarTicket: Tickets = {
     id: 0,
     area: "",
     responsable: "",
@@ -76,7 +67,6 @@ export class CrearTicketComponent implements OnInit {
   guardarNuevoTicket(){
     this.ticketService.guardarTicket(this.ingresarTicket).subscribe(
       (data)=>{    
-        console.log(data);
       },
       (error)=>{
         alert(error.message);

@@ -1,18 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConsumirTicketService } from './consumir-ticket.service';
 
-interface Tickets {
-  id?: number;
-  area: string;
-  responsable: string;
-  departamento: string;
-  municipio: string;
-  descripcion: string;
-  solucion?: string;
-  fecha: string;
-  accion: string;
-}
+import { ConsumirTicketService } from './consumir-ticket.service';
+import { Tickets } from '../Interfaces/tickets';
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-actualizar',
   templateUrl: './actualizar.component.html',
@@ -29,10 +21,10 @@ export class ActualizarComponent implements OnInit {
     municipio: "",
     descripcion: "",
     solucion: "",
-    fecha: "",
+    fecha: new Date,
     accion: ""
   }
-
+  fechaTicketInput : string ='';
   dashboardList: any = [];
   paramsId: any = "";
 
@@ -47,24 +39,11 @@ export class ActualizarComponent implements OnInit {
   }
 
   getData(){
-    this.ticketService.buscarTicket().subscribe(
+    this.ticketService.buscarTicket(this.paramsId.id).subscribe(
       (data)=>{
-        this.dashboardList = data;
-        for (let i = 0; i < this.dashboardList.length; i++) {
-          if(this.dashboardList[i].id == this.paramsId.id){
-            // this.ticket.area = this.dashboardList[i].area;
-            // this.ticket.responsable = this.dashboardList[i].responsable;
-            // this.ticket.departamento = this.dashboardList[i].departamento;
-            // this.ticket.municipio = this.dashboardList[i].municipio;
-            // this.ticket.descripcion = this.dashboardList[i].descripcion;
-            // this.ticket.solucion = this.dashboardList[i].solucion;
-            // this.ticket.fecha = new Date(this.dashboardList[i].fecha).toLocaleDateString('en-CA');
-            // this.ticket.accion = this.dashboardList[i].accion;  
-            this.ticket = this.dashboardList[i];
-            this.ticket.fecha = new Date(this.dashboardList[i].fecha).toLocaleDateString('en-CA');
-          }       
-        }
-        console.log(this.ticket);
+        this.ticket = data[0];
+        this.fechaTicketInput = new Date(this.ticket.fecha).toLocaleDateString('en-CA');
+        console.log(this.fechaTicketInput);
       },
       (error)=>{
         alert(error.message);
@@ -74,9 +53,11 @@ export class ActualizarComponent implements OnInit {
 
   updateData(){
     this.ticket.id = this.paramsId.id;
+    this.ticket.fecha = new Date(this.fechaTicketInput); 
     this.ticketService.actualizarTicket(this.ticket, parseInt(this.paramsId.id)).subscribe(
       (data)=>{
         this.dashboardList = data;
+        this.cancelar();
       },
       (error)=>{
         alert(error.message);

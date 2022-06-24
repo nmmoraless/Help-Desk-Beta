@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Tickets } from '../Interfaces/tickets';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class ConsumirTicketService {
 
   constructor(public http: HttpClient) { }
 
-  buscarTicket(){
-    return this.http.get(`https://localhost:7086/Ticket`);
+  buscarTicket(id: number = 0){
+    return this.http.get<Array<Tickets>>(`https://localhost:7086/Ticket?id=${id}`);
   }
 
   guardarTicket(ingresarTicket: any){
