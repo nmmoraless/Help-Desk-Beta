@@ -1,7 +1,7 @@
 export interface Tickets {
     id?: number;
     area: string;
-    responsable: string;
+    usuario: string;
     departamento: string;
     municipio: string;
     descripcion: string;
@@ -10,14 +10,36 @@ export interface Tickets {
     accion: string;
 }
 
-export interface CrearTickets {
+export interface NewTicket {
     id?: number;
-    area: string;
-    responsable: string;
-    departamento: string;
-    municipio: string;
+    area: number;
+    usuario: number;
+    departamento: number;
+    municipio: number;
     descripcion: string;
     solucion?: string;
-    fecha: string;
+    fecha: Date;
     accion: string;
+}
+
+export interface Area {
+    id?: number;
+    name: string;
+}
+
+export interface EstadoTicket {
+    id?: number;
+    name: string;
+}
+
+export interface Usuarios {
+    id: number;
+    usuario: string;
+    email?: string;
+    telefono?: string;
+    idCargo?: number;
+    idArea?: number;
+    password?: number;
+    estado?: number;
+    tipo?: number;
 }

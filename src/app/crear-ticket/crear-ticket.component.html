@@ -6,22 +6,18 @@
           <div class="col-12 col-md-6 mb-3">
             <label for="area" class="form-label">*Area:</label>
             <select [(ngModel)]="ingresarTicket.area" id="area" class="form-select" name="area" required>
-              <option [value]='""' selected disabled>--Seleccionar---</option>
-              <option [value]="'Contabilidad'">Contabilidad</option>
-              <option [value]="'Tecnología'">Tecnología</option>
-              <option [value]="'Administrativa'">Administrativa</option>
-              <option [value]="'Soporte'">Soporte</option>
+              <option [value]='' selected disabled>---Seleccionar---</option>
+              <option [ngValue]="area.id" *ngFor="let area of listAreas">{{area.name}}</option>
+
               
             </select>
           </div>
     
           <div class="col-12 col-md-6 mb-3">
             <label for="responsable" class="form-label">*Responsable:</label>
-            <select [(ngModel)]="ingresarTicket.responsable" id="responsable" class="form-select" name="responsable" required>
-              <option [value]='""' selected disabled>--Seleccionar--</option>
-              <option [value]='"Lider 1"'>Lider 1</option>
-              <option [value]='"Lider 2"'>Lider 2</option>
-              <option [value]='"Lider 3"'>Lider 3</option>
+            <select [(ngModel)]="ingresarTicket.usuario" id="responsable" class="form-select" name="responsable" required>
+              <option [value]='' selected disabled>---Seleccionar---</option>
+              <option [ngValue]="user.id" *ngFor="let user of listUsers">{{user.usuario}}</option>
             </select>
           </div>
     
@@ -30,17 +26,17 @@
         <div class="row">
           <div class="col-12 col-md-6 mb-3">
             <label for="departamento" class="form-label">*Departamento:</label>
-            <select (change)="onChange($event)" id="departamento" class="form-select" name="departamento" [(ngModel)]="ingresarTicket.departamento" required>
-              <option [value]='""' selected disabled>---Seleccionar---</option>
-              <option [value]='departamento' *ngFor="let departamento of departamentosOrdenados" [ngValue]="departamento">{{departamento}}</option>
+            <select (change)="onChangeDep($event)" id="departamento" class="form-select" name="departamento" [(ngModel)]="defaultValueSelectedDep" required>
+              <option [value]='' selected disabled>---Seleccionar---</option>
+              <option [value]='departamento.id' *ngFor="let departamento of listaDepartamentos">{{departamento.name}}</option>
             </select>
           </div>
     
           <div class="col-12 col-md-6 mb-3">
             <label for="municipio" class="form-label">*Municipio:</label>
-            <select id="municipio" class="form-select" name="municipio" [(ngModel)]="ingresarTicket.municipio" required>
-              <option [value]='""' selected disabled>---Seleccionar---</option>
-              <option [value]='municipio' *ngFor="let municipio of municipiosOrdenados" [ngValue]="municipio">{{municipio}}</option>
+            <select (change)="onChangeMun($event)" id="municipio" class="form-select" name="municipio" [(ngModel)]="defaultValueSelectedMun" required>
+              <option [value]='' selected disabled>---Seleccionar---</option>
+              <option [value]='municipio.id' *ngFor="let municipio of listaMunicipios">{{municipio.name}}</option>
             </select>
           </div>
     
@@ -64,8 +60,8 @@
           <div class="col-12 col-md-6 mb-3">
             <label for="accion" class="form-label">*Acción:</label>
             <select [(ngModel)]="ingresarTicket.accion" id="accion" class="form-select" name="accion" required>
-              <option [value]="''" selected disabled>--Seleccionar--</option>
-              <option [value]="'Registrar'">Registrar</option>
+              <option [value]='' selected disabled>---Seleccionar---</option>
+              <option [value]="1">Registrado</option>
             </select>
           </div>
     

@@ -13,7 +13,7 @@
             <th scope="col">Área</th>
             <th scope="col">Municipio</th>
             <th scope="col">Descripción</th>
-            <th scope="col">Responsable</th>
+            <th scope="col">Usuario</th>
             <th scope="col">Estado</th>
             <th class="text-center" scope="col">Editar</th>
             <th class="text-center" scope="col">Borrar</th>
@@ -26,7 +26,7 @@
                 <td>{{element.area}}</td>
                 <td>{{element.municipio}}</td>
                 <td>{{element.descripcion}}</td>
-                <td>{{element.responsable}}</td>
+                <td>{{element.usuario}}</td>
                 <td>{{element.accion}}</td>
                 <td class="text-center"><img (click)="editar(element.id)" class="icono-editar" src="assets/img/edit.svg" alt="editar" width="25px"></td>
                 <td class="text-center"><img (click)="this.modificarTicket = element.id" class="icono-delete" src="assets/img/delete.svg" alt="borrar" width="25px" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"></td>

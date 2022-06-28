@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';//por default
-import data from 'src/assets/data/csvjson.json';//importación del recurso json
-import { DatePipe } from '@angular/common';
 
 import { ConsumirTicketService } from '../actualizar/consumir-ticket.service';//servicio creado
-import { Tickets } from '../Interfaces/tickets';//interfaz importada
+import { NewTicket, Area, Usuarios } from '../Interfaces/tickets';//interfaz importada
+import { Departamento, Municipio} from '../Interfaces/departamento';//interfaz importada
 
 
 @Component({
@@ -13,60 +12,106 @@ import { Tickets } from '../Interfaces/tickets';//interfaz importada
 })
 export class CrearTicketComponent implements OnInit {
 
-  ingresarTicket: Tickets = {
+  ingresarTicket: NewTicket = {
     id: 0,
-    area: "",
-    responsable: "",
-    departamento: "",
-    municipio: "",
+    area: 0,//Corregir como string ---Seleccionar---
+    usuario: 0,//Corregir como string ---Seleccionar---
+    departamento: 0,
+    municipio: 0,
     descripcion: "",
     solucion: "",
     fecha: new Date(),
-    accion: "",
+    accion: "---Seleccionar---",
   }
 
-  dataColombia: any = JSON.stringify(data); 
-  dataColombiaArray: Array<any> = [];
-  departamentos: Array<string> = [];
-  departamentosOrdenados: Array<string> = [];
-  departamentoSeleccionado: string = "";
-  municipiosOrdenados: Array<string> = [];
+  departamentos: Departamento = {
+    id: 0,
+    name: ""
+  }
+  
+  municipios: Municipio = {
+    id: 0,
+    name: ""
+  }
+  
+  listAreas: Array<Area> = [];
+  listUsers: Array<Usuarios> = []
+  defaultValueSelectedMun: string = "---Seleccionar---";
+  defaultValueSelectedDep: string = "---Seleccionar---";
+  listaDepartamentos: Array<Departamento> = [];
+  departamentoSeleccionado: number = 0;
+  municipioSeleccionado: number = 0;
+  listaMunicipios: Array<Municipio> = [];
   
   constructor(private ticketService: ConsumirTicketService) { }
 
   ngOnInit(): void {
-    this.leerJson();
-    this.dataColombiaArray.forEach((element) => {
-      if(this.departamentos.indexOf(element.DEPARTAMENTO) == -1){
-        this.departamentos.push(element.DEPARTAMENTO);
-      }
-    })
-    this.departamentosOrdenados = this.departamentos.sort();
-  }
-  public leerJson():void{   
-    this.dataColombiaArray = (JSON.parse(this.dataColombia));  
+    this.obtenerDepartamentos();
+    this.getAreas();
+    this.getUsers();
   }
 
-  onChange(event: Event){
-    this.departamentoSeleccionado = (<HTMLInputElement>event.target).value;
-    this.municipiosOrdenados.splice(0, this.municipiosOrdenados.length);
-    let municipios: Array<string> = [];
-    
-    for (let index = 0; index <= this.departamentos.length; index++) {
-      for (let i = 0; i < this.dataColombiaArray.length; i++) {
-        if((`${index}${this.dataColombiaArray[i].DEPARTAMENTO}`) === this.departamentoSeleccionado.replace(": ","")){
-          console.log(this.dataColombiaArray[i].DEPARTAMENTO);
-          municipios.push(this.dataColombiaArray[i].MUNICIPIO);
-        }    
+  getAreas(){
+    this.ticketService.buscarAreas().subscribe(
+      (data)=>{
+        this.listAreas = data;
+      },
+      (error)=>{
+        alert(error.message);
       }
-    }
-    //console.log(this.municipiosOrdenados);
-    return this.municipiosOrdenados = municipios.sort(); 
+    )
+  }
+
+  getUsers(){
+    this.ticketService.buscarUsuarios().subscribe(
+      (data)=>{
+        this.listUsers = data;
+      },
+      (error)=>{
+        alert(error.message);
+      }
+    )
+  }
+
+  obtenerDepartamentos(){
+    this.ticketService.buscarDepartamentos().subscribe(
+      (data)=>{
+        this.listaDepartamentos = data;
+      },
+      (error)=>{
+        alert(error.message);
+      }
+    )
+    
+  }
+
+  obtenerMunicipios(){
+    this.ticketService.buscarMunicipio(this.departamentoSeleccionado).subscribe(
+      (data)=>{
+        this.listaMunicipios = data;
+      },
+      (error)=>{
+        alert(error.message);
+      }
+    ) 
+  }
+
+  onChangeDep(event: Event){
+    this.departamentoSeleccionado = parseInt((<HTMLInputElement>event.target).value); 
+    this.ingresarTicket.departamento = this.departamentoSeleccionado;
+    this.obtenerMunicipios();
+  }
+
+  onChangeMun (event: Event){
+    this.municipioSeleccionado = parseInt((<HTMLInputElement>event.target).value); 
+    this.ingresarTicket.municipio = this.municipioSeleccionado;
   }
 
   guardarNuevoTicket(){
+    console.log(this.ingresarTicket);
     this.ticketService.guardarTicket(this.ingresarTicket).subscribe(
-      (data)=>{    
+      (data)=>{ 
+
       },
       (error)=>{
         alert(error.message);

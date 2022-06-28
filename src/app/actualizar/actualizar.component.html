@@ -11,19 +11,14 @@
           <div class="col-12 col-md-4 mb-3">
             <label for="area" class="form-label">*Area:</label>
             <select [(ngModel)]="ticket.area" id="area" class="form-select" name="area">
-              <option [ngValue]="">Contabilidad</option>
-              <option [ngValue]="">Tecnología</option>
-              <option [ngValue]="">Administrativa</option>
-              <option [ngValue]="">Soporte</option>
+              <option [ngValue]="area.name" *ngFor="let area of listAreas">{{area.name}}</option>
             </select>
           </div>
     
           <div class="col-12 col-md-4 mb-3">
-            <label  for="responsable" class="form-label">*Responsable:</label>
-            <select [(ngModel)]="ticket.responsable" id="responsable" class="form-select" name="responsable">
-              <option [ngValue]="">Lider 1</option>
-              <option [ngValue]="">Lider 2</option>
-              <option [ngValue]="">Lider 3</option>
+            <label  for="usuario" class="form-label">*Usuario a cargo:</label>
+            <select [(ngModel)]="ticket.usuario" id="usuario" class="form-select" name="usuario">
+              <option [ngValue]="user.usuario" *ngFor="let user of listUsers">{{user.usuario}}</option>
             </select>
           </div>
         </div>
@@ -59,12 +54,10 @@
           </div>
     
           <div class="col-12 col-md-6 mb-3">
-            <label for="accion" class="form-label">*Acción:</label>
-            <select [(ngModel)]="ticket.accion" id="accion" class="form-select" name="accion">
-              <option [ngValue]="">Registrar</option>
-              <option [ngValue]="">Pendiente</option>
-              <option [ngValue]="">Reasignado</option>
-              <option [ngValue]="">Finalizado</option>
+            <label for="status" class="form-label">*Estado del ticket:</label>
+            <select [(ngModel)]="ticket.accion" id="status" class="form-select" name="status">
+              <option [ngValue]="estado.name" *ngFor="let estado of listStatusTicket">{{estado.name}}</option>
+              
             </select>
           </div>
     
